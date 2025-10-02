@@ -1,22 +1,30 @@
 // app/layout.tsx
-import type { Metadata } from "next";
-import "./globals.css";
-import Header from "./components/header";
-import { IBM_Plex_Sans } from "next/font/google";
-
-const plex = IBM_Plex_Sans({ subsets: ["latin"], weight: ["400","500","700"] });
+import './globals.css';
+import type { Metadata } from 'next';
+import Header from '@/app/components/header';   // <-- đúng
+import Footer from '@/app/components/footer';   // <-- thêm
 
 export const metadata: Metadata = {
-  title: "Klimakampen",
-  description: "Tiltak, verstinger og klimakalkulator",
+  title: 'Klimakampen',
+  description: 'Eksamen – Klimatiltak, Verstinger, Kalkulator',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="no">
-      <body className={plex.className}>
+      <body>
         <Header />
-        <main className="mx-auto max-w-6xl px-6 py-6">{children}</main>
+
+        {/* menu trượt (mobile) - giữ nguyên */}
+        <nav id="menu" className="kl-menu container">
+          <a href="/">Klimatiltak</a>
+          <a href="/verstinger">Klima-verstinger</a>
+          <a href="/kalkulator">Klimakalkulator</a>
+        </nav>
+
+        <main className="kl-main container">{children}</main>
+
+        <Footer /> {/* <-- dùng component */}
       </body>
     </html>
   );
