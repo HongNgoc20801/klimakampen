@@ -1,12 +1,14 @@
 // app/layout.tsx
-import './globals.css';
-import type { Metadata } from 'next';
-import Header from '@/app/components/header';   // <-- đúng
-import Footer from '@/app/components/footer';   // <-- thêm
+import "./globals.css";
+import type { Metadata } from "next";
+import Header from "@/app/components/header";
+import Footer from "@/app/components/footer";
+import "./components/Hero.css";  
+
 
 export const metadata: Metadata = {
-  title: 'Klimakampen',
-  description: 'Eksamen – Klimatiltak, Verstinger, Kalkulator',
+  title: "Klimakampen",
+  description: "Eksamen – Klimatiltak, Verstinger, Kalkulator",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -14,8 +16,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="no">
       <body>
         <Header />
-
-        {/* menu trượt (mobile) - giữ nguyên */}
+        {/* menu mobile – phải nằm NGAY SAU header để selector :has hoạt động */}
         <nav id="menu" className="kl-menu container">
           <a href="/">Klimatiltak</a>
           <a href="/verstinger">Klima-verstinger</a>
@@ -23,8 +24,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </nav>
 
         <main className="kl-main container">{children}</main>
-
-        <Footer /> {/* <-- dùng component */}
+        <Footer />
       </body>
     </html>
   );

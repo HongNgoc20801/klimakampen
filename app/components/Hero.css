@@ -1,0 +1,137 @@
+/* ----- HERO BASE ----- */
+.hero{
+  position: relative;
+  width: 100%;
+  border-radius: 16px;
+  overflow: hidden;
+  margin: 12px 0 28px; /* khoảng trống dưới hero */
+}
+
+/* full-bleed: kéo hero rộng bằng header / viewport */
+.hero--full{
+  width: 100vw;
+  max-width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+}
+
+/* wrapper cho Image fill */
+.hero-media{ position: absolute; inset: 0; }
+.hero-img{ object-fit: cover; object-position: center 35%; }
+.hero-overlay{ position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,.25), rgba(0,0,0,.2)); }
+
+/* nội dung */
+.hero-content{
+  position: relative; z-index: 1;
+  height: 100%;
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 16px; color: #fff; text-shadow: 0 1px 3px rgba(0,0,0,.35);
+  max-width: 960px; margin: 0 auto;
+}
+.hero-center{ align-items: center; text-align: center; }
+
+.hero-kicker{ font-size: 14px; opacity:.95; margin-bottom:6px; }
+.hero-title{ margin:0; font-size: clamp(28px,4vw,42px); line-height:1.1;text-wrap: balance;  }
+.hero-subtitle{ margin:8px 0 12px; font-size:clamp(16px,2.2vw,18px); opacity:.95; max-width:60ch; }
+.hero-actions{ display:flex; gap:10px; flex-wrap:wrap; margin-top: 8px; }
+
+html, body { overflow-x: hidden; }
+
+
+@media (max-width: 639px){
+  .hero-h250{ height: 180px; }
+  .hero-h300{ height: 200px; }
+  .hero-h400{ height: 280px; } /* thấp hơn chút trên mobile */
+}
+@media (min-width: 640px) and (max-width: 1023px){
+  .hero-h250{ height: 210px; }
+  .hero-h300{ height: 240px; }
+  .hero-h400{ height: 340px; }
+}
+@media (min-width: 1024px){
+  .hero-h250{ height: 250px; }
+  .hero-h300{ height: 300px; }
+  .hero-h400{ height: 400px; }
+}
+
+/* anchor offset để cuộn tới #tiltak không bị header che */
+#tiltak{ scroll-margin-top: calc(var(--header-h) + 12px); }
+
+/* ====== TYPO + HIỆU ỨNG ====== */
+:root{
+  --hero-accent: #86efac;             /* màu nhấn xanh lá nhạt */
+  --hero-ease: cubic-bezier(.22,1,.36,1);
+  --hero-shadow: 0 6px 30px rgba(0,0,0,.35);
+}
+
+/* overlay đậm hơn chút để chữ nổi */
+.hero-overlay{
+  background:
+    linear-gradient(180deg, rgba(0,0,0,.48), rgba(0,0,0,.32)),
+    radial-gradient(50% 45% at 50% 40%, rgba(0,0,0,.18), transparent 65%);
+}
+
+/* Kicker trên cùng */
+.hero-kicker{
+  text-transform: uppercase;
+  letter-spacing: .18em;
+  font-weight: 700;
+  opacity: .95;
+  position: relative;
+  padding-left: 14px;
+}
+.hero-kicker::before{
+  content:"";
+  position:absolute; left:0; top:50%;
+  width: 8px; height: 2px; border-radius: 2px;
+  background: var(--hero-accent);
+  transform: translateY(-50%);
+}
+
+/* Tiêu đề */
+.hero-title{
+  margin: 6px 0 8px;
+  font-weight: 900;
+  letter-spacing: -0.015em;
+  line-height: 1.06;
+  font-size: clamp(30px, 4.5vw, 52px); 
+  text-shadow: 0 2px 10px rgba(0,0,0,.35);
+  filter: drop-shadow(0 10px 30px rgba(0,0,0,.25));
+}
+/* nhấn mạnh 1–2 từ bằng <span class="accent">…</span> */
+.hero-title .accent{
+  background: linear-gradient(90deg, #ffffff, var(--hero-accent));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Phụ đề */
+.hero-subtitle{
+  margin: 10px 0 14px;
+  font-size: clamp(18px,2.4vw,24px);
+  line-height: 1.5;
+  font-weight: 600;                      
+  color: rgba(255,255,255,.96);
+  text-shadow: 0 1px 2px rgba(0,0,0,.35);
+}
+
+/* Nút */
+.btn.primary{
+  box-shadow: var(--hero-shadow);
+  transition: transform .25s var(--hero-ease), box-shadow .25s var(--hero-ease);
+}
+.btn.primary:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 10px 36px rgba(0,0,0,.4);
+}
+
+/* ====== Reveal animation rất nhẹ ====== */
+@keyframes revealUp{
+  from{ opacity:0; transform: translateY(12px); }
+  to{ opacity:1; transform: translateY(0); }
+}
+.reveal-1{ animation: revealUp .6s var(--hero-ease) both .05s; }
+.reveal-2{ animation: revealUp .6s var(--hero-ease) both .15s; }
+.reveal-3{ animation: revealUp .6s var(--hero-ease) both .25s; }
+.reveal-4{ animation: revealUp .6s var(--hero-ease) both .35s; }
