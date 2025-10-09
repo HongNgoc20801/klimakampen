@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useEffect } from "react";
 import { usePathname } from "next/navigation";
 
-export default function Navheader() {
+export default function Header() {
   const pathname = usePathname();
 
   useEffect(() => {
